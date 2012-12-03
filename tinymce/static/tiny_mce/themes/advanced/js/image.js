@@ -112,10 +112,12 @@ var ImageDialog = {
 			});
 
 			// Handle align
+			var align = '';
 			v = getSelectValue(f, 'align');
 			if (v) {
 				if (v == 'left' || v == 'right') {
 					st['float'] = v;
+					align = v;
 					delete st['vertical-align'];
 				} else {
 					st['vertical-align'] = v;
@@ -140,8 +142,14 @@ var ImageDialog = {
 			v = f.hspace.value;
 			if (v) {
 				delete st['margin'];
-				st['margin-left'] = v + 'px';
-				st['margin-right'] = v + 'px';
+				if (align=='left')
+					st['margin-left'] = '0';
+				else
+					st['margin-left'] = v + 'px';
+				if (align=='right')
+					st['margin-right'] = '0';
+				else
+					st['margin-right'] = v + 'px';
 			} else {
 				delete st['margin-left'];
 				delete st['margin-right'];
