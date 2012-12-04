@@ -117,6 +117,8 @@ setTimeout(function () {
 }, 0);
 </script>''' % (final_attrs['id'], final_attrs['id'][0:pos], mce_json))
         else:
+            if tinymce.settings.USE_COMPRESSOR:
+                html.append(u'<script type="text/javascript">tinyMCE_GZ.init(%s)</script>' % mce_json)
             html.append(u'<script type="text/javascript">tinyMCE.init(%s)</script>' % mce_json)
 
         return mark_safe(u'\n'.join(html))
